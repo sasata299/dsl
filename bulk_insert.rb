@@ -1,4 +1,4 @@
-module BatchInsert
+module BulkInsert
   require 'rubygems'
   require 'active_record'
   require 'active_support/all'
@@ -93,10 +93,10 @@ module BatchInsert
       end
 
       def set_connection(_options={})
-        if File.exist?("#{ENV['HOME']}/.batch_insert.yml")
-          puts h.color("\nUsing from #{ENV['HOME']}/.batch_insert.yml...\n", :yellow)
+        if File.exist?("#{ENV['HOME']}/.bulk_insert.yml")
+          puts h.color("\nUsing from #{ENV['HOME']}/.bulk_insert.yml...\n", :yellow)
 
-          options = YAML.load_file("#{ENV['HOME']}/.batch_insert.yml")
+          options = YAML.load_file("#{ENV['HOME']}/.bulk_insert.yml")
         else 
           puts h.color("\nPlease tell me database connection info...\n", :yellow)
 
@@ -116,9 +116,9 @@ module BatchInsert
             'socket'   => socket
           }
 
-          puts h.color("\nCreating config file to #{ENV['HOME']}/.batch_insert.yml...\n", :yellow)
+          puts h.color("\nCreating config file to #{ENV['HOME']}/.bulk_insert.yml...\n", :yellow)
 
-          File.open("#{ENV['HOME']}/.batch_insert.yml", 'w'){|f|
+          File.open("#{ENV['HOME']}/.bulk_insert.yml", 'w'){|f|
             f.puts options.to_yaml
           }
         end
